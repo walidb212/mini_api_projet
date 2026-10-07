@@ -1,4 +1,5 @@
 import pytest
+
 from app.outils.convert import celsius_fahrenheit
 
 
