@@ -14,3 +14,10 @@ def test_celsius_fahrenheit_limite():
 def test_celsius_fahrenheit_erreur():
     with pytest.raises(ValueError):
         celsius_fahrenheit(-300)
+        
+def test_celsius_fahrenheit_moins_40():
+    assert celsius_fahrenheit(-40) == -40
+
+
+def test_celsius_fahrenheit_zero():
+    assert celsius_fahrenheit(0) == 32
