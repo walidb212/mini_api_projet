@@ -1,4 +1,3 @@
-##Convertir des données Celsius en données Fahrenheit 
 def celsius_fahrenheit(celsius: float) -> float:
     if celsius < -273.15:
         raise ValueError("Température impossible")
