@@ -1,5 +1,5 @@
 import pytest
-from math_functions import factorielle, est_premier, pgcd
+from app.outils.math import factorielle
  
  
 # ============================================================================
@@ -44,3 +44,5 @@ class TestFactorielle:
         """Test factorielle avec un booléen (qui est un int en Python)."""
         with pytest.raises(TypeError, match="doit être un entier"):
             factorielle(True)
+
+
