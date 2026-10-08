@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 app = FastAPI(title="Mini API")
+app.add_exception_handler(ValueError, valeur_invalide)
 
 
 @app.get("/sante")
