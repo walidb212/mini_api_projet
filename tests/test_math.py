@@ -1,9 +1,10 @@
 import pytest
 
-from app.outils.math import factorielle
+from app.outils.math import est_premier, factorielle
 
 # ============================================================================
-# Tests pour factorielle(n)
+
+# Tests
 # ============================================================================
  
 class TestFactorielle:
@@ -45,4 +46,26 @@ class TestFactorielle:
         with pytest.raises(TypeError, match="doit être un entier"):
             factorielle(True)
 
-
+class TestEstPremier:
+    """Tests de la fonction est_premier."""
+    
+    def test_est_premier_normal(self):
+        """Test est_premier avec des valeurs courantes."""
+        assert est_premier(2) is True
+        assert est_premier(3) is True
+        assert est_premier(17) is True
+        assert est_premier(4) is False
+        assert est_premier(10) is False
+    
+    def test_est_premier_limite(self):
+        """Test est_premier aux limites."""
+        assert est_premier(1) is False
+        assert est_premier(2) is True
+        assert est_premier(97) is True
+    
+    def test_est_premier_erreur(self):
+        """Test est_premier avec erreurs."""
+        with pytest.raises(TypeError):
+            est_premier(5.5)
+        with pytest.raises(TypeError):
+            est_premier("17")
