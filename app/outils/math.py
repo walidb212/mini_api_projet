@@ -18,11 +18,6 @@ def factorielle(n):
  
     return result
 
-# Tests des fonctions
-print("Test factorielle:")
-print(f"factorielle(5) = {factorielle(5)}")
-print(f"factorielle(0) = {factorielle(0)}")
-
 
 def est_premier(n):
 
@@ -43,8 +38,3 @@ def est_premier(n):
         i += 2
     
     return True
-
-
-print("Test est_premier:")
-print(f"est_premier(5) = {est_premier(5)}")
-print(f"est_premier(17) = {est_premier(17)}")

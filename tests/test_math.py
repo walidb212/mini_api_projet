@@ -62,6 +62,9 @@ class TestEstPremier:
         assert est_premier(1) is False
         assert est_premier(2) is True
         assert est_premier(97) is True
+        assert est_premier(9) is False
+        assert est_premier(0) is False
+        assert est_premier(-7) is False
     
     def test_est_premier_erreur(self):
         """Test est_premier avec erreurs."""

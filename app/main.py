@@ -19,15 +19,17 @@ def route_celsius_fahrenheit(celsius: float):
         raise HTTPException(400, detail=str(e))
 
 @app.get("/factorielle/{n}")
-def route_factorielle(n: int):
+def route_factorielle(n: str):
     try:
+        n = int(n)
         return {"n": n, "factorielle": factorielle(n)}
     except (ValueError, TypeError) as e:
         raise HTTPException(400, detail=str(e))
 
 @app.get("/est_premier/{n}")
-def route_est_premier(n: int):
+def route_est_premier(n: str):
     try:
+        n = int(n)
         return {"n": n, "est_premier": est_premier(n)}
     except TypeError as e:
         raise HTTPException(400, detail=str(e))
