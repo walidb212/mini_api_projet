@@ -1,23 +1,4 @@
 def factorielle(n):
-    """
-    Calcule la factorielle de n.
- 
-    Args:
-        n (int): Un entier positif ou zéro
- 
-    Returns:
-        int: La factorielle de n (n!)
- 
-    Raises:
-        ValueError: Si n < 0 ou n n'est pas un entier
-        TypeError: Si n n'est pas un nombre
- 
-    Examples:
-        >>> factorielle(5)
-        120
-        >>> factorielle(0)
-        1
-    """
     # Validation du type
     if not isinstance(n, int) or isinstance(n, bool):
         raise TypeError(f"L'entrée doit être un entier, reçu {type(n).__name__}")
@@ -37,7 +18,23 @@ def factorielle(n):
  
     return result
 
-# Tests des fonctions
-print("Test factorielle:")
-print(f"factorielle(5) = {factorielle(5)}")
-print(f"factorielle(0) = {factorielle(0)}")
+
+def est_premier(n):
+
+    if not isinstance(n, int) or isinstance(n, bool):
+        raise TypeError(f"L'entrée doit être un entier, reçu {type(n).__name__}")
+    
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+    
+    return True
