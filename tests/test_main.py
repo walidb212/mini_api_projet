@@ -20,3 +20,14 @@ def test_route_celsius_fahrenheit():
 def test_route_celsius_fahrenheit_erreur():
     reponse = client.get("/celsius_fahrenheit/-300")
     assert reponse.status_code == 400
+
+def test_route_email_valide():
+    reponse = client.get("/email_valide/lea@mail.fr")
+    assert reponse.status_code == 200
+    assert reponse.json()["valide"] is True
+
+
+def test_route_email_valide_incorrect():
+    reponse = client.get("/email_valide/pas-un-mail")
+    assert reponse.status_code == 200
+    assert reponse.json()["valide"] is False
