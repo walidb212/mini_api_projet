@@ -15,3 +15,6 @@ def test_email_valide_erreur():
     assert email_valide("@mail.fr") is False
     assert email_valide("lea@mail") is False
     assert email_valide("lea@@mail.fr") is False
+    assert email_valide("lea@mail..fr") is False
+    assert email_valide("lea@ mail.fr") is False
+    assert email_valide("lea@.mail.fr") is False
