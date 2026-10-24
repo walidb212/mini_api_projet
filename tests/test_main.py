@@ -32,3 +32,13 @@ def test_route_km_miles():
 def test_route_km_miles_erreur():
     reponse = client.get("/km_miles/-1")
     assert reponse.status_code == 400
+def test_route_email_valide():
+    reponse = client.get("/email_valide/lea@mail.fr")
+    assert reponse.status_code == 200
+    assert reponse.json()["valide"] is True
+
+
+def test_route_email_valide_incorrect():
+    reponse = client.get("/email_valide/pas-un-mail")
+    assert reponse.status_code == 200
+    assert reponse.json()["valide"] is False
