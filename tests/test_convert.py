@@ -1,6 +1,6 @@
 import pytest
 
-from app.outils.convert import celsius_fahrenheit
+from app.outils.convert import celsius_fahrenheit, km_miles
 
 
 def test_celsius_fahrenheit_normal():
@@ -21,3 +21,16 @@ def test_celsius_fahrenheit_moins_40():
 
 def test_celsius_fahrenheit_zero():
     assert celsius_fahrenheit(0) == 32
+
+
+def test_km_miles_normal():
+    assert km_miles(100) == pytest.approx(62.1371)
+
+
+def test_km_miles_limite():
+    assert km_miles(0) == 0
+
+
+def test_km_miles_erreur():
+    with pytest.raises(ValueError):
+        km_miles(-1)
