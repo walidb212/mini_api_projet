@@ -1,3 +1,4 @@
+import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
@@ -19,4 +20,15 @@ def test_route_celsius_fahrenheit():
 
 def test_route_celsius_fahrenheit_erreur():
     reponse = client.get("/celsius_fahrenheit/-300")
+    assert reponse.status_code == 400
+
+
+def test_route_km_miles():
+    reponse = client.get("/km_miles/100")
+    assert reponse.status_code == 200
+    assert reponse.json()["miles"] == pytest.approx(62.1371)
+
+
+def test_route_km_miles_erreur():
+    reponse = client.get("/km_miles/-1")
     assert reponse.status_code == 400
