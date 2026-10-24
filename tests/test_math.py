@@ -1,9 +1,8 @@
 import pytest
 
-from app.outils.math import est_premier, factorielle
+from app.outils.math import est_premier, factorielle, pgcd
 
 # ============================================================================
-
 # Tests
 # ============================================================================
  
@@ -72,3 +71,30 @@ class TestEstPremier:
             est_premier(5.5)
         with pytest.raises(TypeError):
             est_premier("17")
+
+
+class TestPgcd:
+    """Tests de la fonction pgcd."""
+    
+    def test_pgcd_normal(self):
+        """Test pgcd avec des valeurs courantes."""
+        assert pgcd(48, 18) == 6
+        assert pgcd(17, 19) == 1
+        assert pgcd(100, 50) == 50
+    
+    def test_pgcd_limite(self):
+        """Test pgcd aux limites."""
+        assert pgcd(-48, 18) == 6
+        assert pgcd(48, -18) == 6
+        assert pgcd(0, 5) == 5
+        assert pgcd(7, 7) == 7
+    
+    def test_pgcd_erreur(self):
+        """Test pgcd avec erreurs."""
+        with pytest.raises(ValueError):
+            pgcd(0, 0)
+        with pytest.raises(TypeError):
+            pgcd(5.5, 10)
+        with pytest.raises(TypeError):
+            pgcd(10, "5")
+
