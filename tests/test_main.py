@@ -44,6 +44,20 @@ def test_route_email_valide_incorrect():
     assert reponse.json()["valide"] is False
 
 
+def test_route_euros_devise():
+    reponse = client.get("/euros_devise/100/USD")
+    assert reponse.status_code == 200
+    assert reponse.json()["resultat"] == pytest.approx(108)
+
+
+def test_route_euros_devise_devise_inconnue():
+    reponse = client.get("/euros_devise/100/XYZ")
+    assert reponse.status_code == 400
+
+
+def test_route_euros_devise_montant_negatif():
+    reponse = client.get("/euros_devise/-5/USD")
+    assert reponse.status_code == 400
 def test_route_code_postal():
     reponse = client.get("/code_postal/75001")
     assert reponse.status_code == 200
@@ -60,6 +74,12 @@ def test_route_code_postal_incorrect():
     reponse = client.get("/code_postal/7500")
     assert reponse.status_code == 200
     assert reponse.json()["valide"] is False
+
+
+def test_route_euros_devise_minuscule():
+    reponse = client.get("/euros_devise/100/usd")
+    assert reponse.status_code == 200
+    assert reponse.json()["devise"] == "USD"
 
 
 def test_route_est_palindrome():

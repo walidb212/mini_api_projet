@@ -5,7 +5,7 @@ def verifier_texte(texte: str) -> None:
 
 def est_palindrome(texte: str) -> bool:
     verifier_texte(texte)
-    propre = texte.lower().replace(" ", "")
+    propre = [c for c in texte.lower() if c.isalnum()]
     return propre == propre[::-1]
 
 
