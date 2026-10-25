@@ -12,6 +12,7 @@ def test_est_palindrome_limite():
     assert est_palindrome("a") is True
     assert est_palindrome("Kayak") is True
     assert est_palindrome("esope reste ici et se repose") is True
+    assert est_palindrome("Esope reste ici, et se repose") is True
 
 
 def test_est_palindrome_erreur():
@@ -28,6 +29,7 @@ def test_compter_voyelles_normal():
 def test_compter_voyelles_limite():
     assert compter_voyelles("bcd") == 0
     assert compter_voyelles("Élève à l'école") == 7
+    assert compter_voyelles("ÉCOLE") == 3
 
 
 def test_compter_voyelles_erreur():
