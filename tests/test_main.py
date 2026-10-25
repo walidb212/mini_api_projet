@@ -83,33 +83,33 @@ def test_route_euros_devise_minuscule():
 
 
 def test_route_est_palindrome():
-    reponse = client.get("/est_palindrome/kayak")
+    reponse = client.get("/est_palindrome", params={"texte": "kayak"})
     assert reponse.status_code == 200
     assert reponse.json()["est_palindrome"] is True
 
 
 def test_route_est_palindrome_erreur():
-    reponse = client.get("/est_palindrome/%20")
+    reponse = client.get("/est_palindrome", params={"texte": " "})
     assert reponse.status_code == 400
 
 
 def test_route_compter_voyelles():
-    reponse = client.get("/compter_voyelles/école")
+    reponse = client.get("/compter_voyelles", params={"texte": "école"})
     assert reponse.status_code == 200
     assert reponse.json()["voyelles"] == 3
 
 
 def test_route_compter_voyelles_erreur():
-    reponse = client.get("/compter_voyelles/%20")
+    reponse = client.get("/compter_voyelles", params={"texte": " "})
     assert reponse.status_code == 400
 
 
 def test_route_inverser():
-    reponse = client.get("/inverser/abc")
+    reponse = client.get("/inverser", params={"texte": "abc"})
     assert reponse.status_code == 200
     assert reponse.json()["inverse"] == "cba"
 
 
 def test_route_inverser_erreur():
-    reponse = client.get("/inverser/%20")
+    reponse = client.get("/inverser", params={"texte": " "})
     assert reponse.status_code == 400

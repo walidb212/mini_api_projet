@@ -69,16 +69,16 @@ def route_code_postal(code: str):
     return {"code": code, "valide": code_postal(code)}
 
 
-@app.get("/est_palindrome/{texte}")
+@app.get("/est_palindrome")
 def route_est_palindrome(texte: str):
     return {"texte": texte, "est_palindrome": est_palindrome(texte)}
 
 
-@app.get("/compter_voyelles/{texte}")
+@app.get("/compter_voyelles")
 def route_compter_voyelles(texte: str):
     return {"texte": texte, "voyelles": compter_voyelles(texte)}
 
 
-@app.get("/inverser/{texte}")
+@app.get("/inverser")
 def route_inverser(texte: str):
     return {"texte": texte, "inverse": inverser(texte)}
