@@ -18,11 +18,6 @@ def factorielle(n):
  
     return result
 
-# Tests des fonctions
-print("Test factorielle:")
-print(f"factorielle(5) = {factorielle(5)}")
-print(f"factorielle(0) = {factorielle(0)}")
-
 
 def est_premier(n):
 
@@ -45,12 +40,6 @@ def est_premier(n):
     return True
 
 
-print("Test est_premier:")
-print(f"est_premier(5) = {est_premier(5)}")
-print(f"est_premier(17) = {est_premier(17)}")
-
-
-
 def pgcd(a, b):
 
     if not isinstance(a, int) or isinstance(a, bool):
@@ -69,8 +58,4 @@ def pgcd(a, b):
         a, b = b, a % b
     
     return a
-
-print("Test PGCD:")
-print(f"pgcd(48, 18) = {pgcd(48, 18)}")
-print(f"pgcd(17, 19) = {pgcd(17, 19)}")
 
