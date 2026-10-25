@@ -1,10 +1,12 @@
 from fastapi import FastAPI, HTTPException
 
+from app.erreurs import valeur_invalide
 from app.outils.convert import celsius_fahrenheit
 from app.outils.math import est_premier, factorielle
 from app.outils.validation import email_valide
 
 app = FastAPI(title="Mini API")
+app.add_exception_handler(ValueError, valeur_invalide)
 
 
 @app.get("/sante")
