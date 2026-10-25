@@ -40,9 +40,10 @@ L'API écoute sur `http://localhost:8000`
 docker run -p 8000:8000 ghcr.io/walidb212/mini_api_projet:v1.0.0
 
 # Ou en local
-```
+
 docker build -t mini-api .
 docker run -p 8000:8000 mini-api
+```
 
 ## Utilisation
 
