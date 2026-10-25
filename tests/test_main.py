@@ -33,6 +33,24 @@ def test_route_email_valide_incorrect():
     assert reponse.json()["valide"] is False
 
 
+def test_route_code_postal():
+    reponse = client.get("/code_postal/75001")
+    assert reponse.status_code == 200
+    assert reponse.json()["valide"] is True
+
+
+def test_route_code_postal_zero_initial():
+    reponse = client.get("/code_postal/01000")
+    assert reponse.status_code == 200
+    assert reponse.json()["valide"] is True
+
+
+def test_route_code_postal_incorrect():
+    reponse = client.get("/code_postal/7500")
+    assert reponse.status_code == 200
+    assert reponse.json()["valide"] is False
+
+
 def test_route_est_palindrome():
     reponse = client.get("/est_palindrome/kayak")
     assert reponse.status_code == 200
