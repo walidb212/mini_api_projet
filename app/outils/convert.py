@@ -13,3 +13,7 @@ def euros_devise(montant: float, devise: str) -> float:
     if devise.upper() not in TAUX:
         raise ValueError(f"Devise inconnue : {devise}")
     return montant * TAUX[devise.upper()]
+def km_miles(km: float) -> float:
+    if km < 0:
+        raise ValueError("La distance ne peut pas être négative")
+    return km * 0.621371

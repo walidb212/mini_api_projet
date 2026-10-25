@@ -1,6 +1,6 @@
 import pytest
 
-from app.outils.convert import celsius_fahrenheit, euros_devise
+from app.outils.convert import celsius_fahrenheit, euros_devise, km_miles
 
 
 def test_celsius_fahrenheit_normal():
@@ -14,7 +14,7 @@ def test_celsius_fahrenheit_limite():
 def test_celsius_fahrenheit_erreur():
     with pytest.raises(ValueError):
         celsius_fahrenheit(-300)
-        
+
 def test_celsius_fahrenheit_moins_40():
     assert celsius_fahrenheit(-40) == -40
 
@@ -38,3 +38,16 @@ def test_euros_devise_erreur():
         euros_devise(-1, "USD")
     with pytest.raises(ValueError):
         euros_devise(100, "XYZ")
+
+
+def test_km_miles_normal():
+    assert km_miles(100) == pytest.approx(62.1371)
+
+
+def test_km_miles_limite():
+    assert km_miles(0) == 0
+
+
+def test_km_miles_erreur():
+    with pytest.raises(ValueError):
+        km_miles(-1)
