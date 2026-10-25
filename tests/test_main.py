@@ -80,3 +80,59 @@ def test_route_euros_devise_minuscule():
     reponse = client.get("/euros_devise/100/usd")
     assert reponse.status_code == 200
     assert reponse.json()["devise"] == "USD"
+
+
+def test_route_est_palindrome():
+    reponse = client.get("/est_palindrome", params={"texte": "kayak"})
+    assert reponse.status_code == 200
+    assert reponse.json()["est_palindrome"] is True
+
+
+def test_route_est_palindrome_erreur():
+    reponse = client.get("/est_palindrome", params={"texte": " "})
+    assert reponse.status_code == 400
+
+
+def test_route_compter_voyelles():
+    reponse = client.get("/compter_voyelles", params={"texte": "école"})
+    assert reponse.status_code == 200
+    assert reponse.json()["voyelles"] == 3
+
+
+def test_route_compter_voyelles_erreur():
+    reponse = client.get("/compter_voyelles", params={"texte": " "})
+    assert reponse.status_code == 400
+
+
+def test_route_inverser():
+    reponse = client.get("/inverser", params={"texte": "abc"})
+    assert reponse.status_code == 200
+    assert reponse.json()["inverse"] == "cba"
+
+
+def test_route_inverser_erreur():
+    reponse = client.get("/inverser", params={"texte": " "})
+    assert reponse.status_code == 400
+
+
+def test_route_inverser_caracteres_speciaux():
+    reponse = client.get("/inverser", params={"texte": "a/b?c#d"})
+    assert reponse.status_code == 200
+    assert reponse.json()["inverse"] == "d#c?b/a"
+
+
+def test_route_est_palindrome_avec_slash():
+    reponse = client.get("/est_palindrome", params={"texte": "a/a"})
+    assert reponse.status_code == 200
+    assert reponse.json()["est_palindrome"] is True
+
+
+def test_route_compter_voyelles_avec_point_interrogation():
+    reponse = client.get("/compter_voyelles", params={"texte": "ça va ?"})
+    assert reponse.status_code == 200
+    assert reponse.json()["voyelles"] == 2
+
+
+def test_route_texte_manquant():
+    reponse = client.get("/inverser")
+    assert reponse.status_code == 422
