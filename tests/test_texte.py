@@ -12,6 +12,7 @@ def test_est_palindrome_limite():
     assert est_palindrome("a") is True
     assert est_palindrome("Kayak") is True
     assert est_palindrome("esope reste ici et se repose") is True
+    assert est_palindrome("Esope reste ici, et se repose") is True
 
 
 def test_est_palindrome_erreur():
