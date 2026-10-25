@@ -39,6 +39,7 @@ def test_compter_voyelles_erreur():
 
 def test_inverser_normal():
     assert inverser("abc") == "cba"
+    assert inverser("bonjour monde") == "ednom ruojnob"
 
 
 def test_inverser_limite():
