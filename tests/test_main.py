@@ -31,3 +31,9 @@ def test_route_email_valide_incorrect():
     reponse = client.get("/email_valide/pas-un-mail")
     assert reponse.status_code == 200
     assert reponse.json()["valide"] is False
+
+
+def test_route_est_palindrome():
+    reponse = client.get("/est_palindrome/kayak")
+    assert reponse.status_code == 200
+    assert reponse.json()["est_palindrome"] is True
