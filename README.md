@@ -34,10 +34,12 @@ L'API écoute sur `http://localhost:8000`
 
 ### Docker
 
-```bash
-docker build -t mini-api .
+# Image publiée (après le tag v1.0.0)
 docker run -p 8000:8000 ghcr.io/walidb212/mini_api_projet:v1.0.0
-```
+
+# Ou en local
+docker build -t mini-api .
+docker run -p 8000:8000 mini-api
 
 ## Utilisation
 
@@ -76,16 +78,16 @@ curl "http://localhost:8000/celsius_fahrenheit/100"
 ```
 
 **Km → Miles**
-\`\`\`bash
+```bash
 curl "http://localhost:8000/km_miles/160"
-# {"km": 160, "miles": 99.42}
-\`\`\`
+# {"km": 160.0, "miles": 99.41936}
+```
 
 **Euros → Devise**
-\`\`\`bash
+```bash
 curl "http://localhost:8000/euros_devise/100/USD"
-# {"euros": 100, "devise": "USD", "montant": 110.5}
-\`\`\`
+# {"montant": 100.0, "devise": "USD", "resultat": 108.0}
+```
 
 ### Validation
 
@@ -96,30 +98,42 @@ curl "http://localhost:8000/email_valide/test@example.com"
 ```
 
 **Code postal**
-\`\`\`bash
+```bash
 curl "http://localhost:8000/code_postal/75001"
-# {"code_postal": "75001", "valide": true}
-\`\`\`
+# {"code": "75001", "valide": true}
+```
 
 ### Texte
 
 **Majuscules**
-\`\`\`bash
+```bash
 curl "http://localhost:8000/majuscules/hello"
 # {"texte": "hello", "resultat": "HELLO"}
-\`\`\`
+```
 
 **Minuscules**
-\`\`\`bash
+```bash
 curl "http://localhost:8000/minuscules/HELLO"
 # {"texte": "HELLO", "resultat": "hello"}
-\`\`\`
+```
 
 **Inverse texte**
-\`\`\`bash
-curl "http://localhost:8000/inverse/hello"
-# {"texte": "hello", "resultat": "olleh"}
-\`\`\`
+```bash
+curl "http://localhost:8000/inverser?texte=hello"
+# {"texte": "hello", "inverse": "olleh"}
+```
+
+**Compter Voyelles**
+```bash
+curl "http://localhost:8000/compter_voyelles?texte=école"
+# {"texte": "école", "voyelles": 3}
+```
+
+**Est Palindrome**
+```bash
+curl "http://localhost:8000/est_palindrome?texte=kayak"
+# {"texte": "kayak", "est_palindrome": true}
+```
 
 ## Tests
 
@@ -139,14 +153,30 @@ ruff check .
 
 ### Branches
 
-- Une issue = une branche : `feat/N-nom-de-la-tache`
-- Exemple : `feat/17-est_premier`
+Une issue = une branche avec le préfixe correspondant au type :
+
+| Type | Préfixe | Exemple |
+|------|---------|---------|
+| Nouvelle fonctionnalité | `feat/N-…` | `feat/17-est_premier` |
+| Bug fix | `fix/N-…` | `fix/12-erreur-pgcd` |
+| Tests | `test/N-…` | `test/19-ajouter-tests` |
+| Documentation | `docs/N-…` | `docs/14-readme` |
+| Refactoring | `refactor/N-…` | `refactor/8-optimiser-math` |
+| CI/CD | `ci/N-…` | `ci/6-github-actions` |
+| Maintenance | `chore/N-…` | `chore/3-deps-update` |
 
 ### Commits
 
-- Messages atomiques et explicites
-- Format : `feat(module): description courte`
-- Exemple : `feat(math): ajoute est_premier + tests`
+Messages atomiques et explicites avec le bon type :
+
+**Types disponibles :** `feat`, `fix`, `test`, `docs`, `refactor`, `ci`, `chore`
+
+**Exemples :**
+- `feat(math): ajoute est_premier + tests`
+- `fix(convert): corrige conversion celsius`
+- `docs(readme): rédige le README complet`
+- `test(math): ajoute tests pgcd`
+- `ci(github): configure ruff et pytest`
 
 ### Pull Request
 
