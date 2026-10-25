@@ -1,6 +1,6 @@
 import pytest
 
-from app.outils.texte import est_palindrome
+from app.outils.texte import compter_voyelles, est_palindrome
 
 
 def test_est_palindrome_normal():
@@ -20,3 +20,18 @@ def test_est_palindrome_erreur():
         est_palindrome("")
     with pytest.raises(ValueError):
         est_palindrome("   ")
+
+
+def test_compter_voyelles_normal():
+    assert compter_voyelles("bonjour") == 3
+
+
+def test_compter_voyelles_limite():
+    assert compter_voyelles("bcd") == 0
+    assert compter_voyelles("Élève à l'école") == 7
+    assert compter_voyelles("ÉCOLE") == 3
+
+
+def test_compter_voyelles_erreur():
+    with pytest.raises(ValueError):
+        compter_voyelles("")
