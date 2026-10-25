@@ -136,3 +136,14 @@ def test_route_compter_voyelles_avec_point_interrogation():
 def test_route_texte_manquant():
     reponse = client.get("/inverser")
     assert reponse.status_code == 422
+
+
+def test_route_pgcd():
+    reponse = client.get("/pgcd/48/18")
+    assert reponse.status_code == 200
+    assert reponse.json()["pgcd"] == 6
+
+
+def test_route_pgcd_erreur():
+    reponse = client.get("/pgcd/0/0")
+    assert reponse.status_code == 400
