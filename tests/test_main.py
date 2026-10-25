@@ -1,3 +1,5 @@
+import pytest
+
 from fastapi.testclient import TestClient
 
 from app.main import app
@@ -31,3 +33,19 @@ def test_route_email_valide_incorrect():
     reponse = client.get("/email_valide/pas-un-mail")
     assert reponse.status_code == 200
     assert reponse.json()["valide"] is False
+
+
+def test_route_euros_devise():
+    reponse = client.get("/euros_devise/100/USD")
+    assert reponse.status_code == 200
+    assert reponse.json()["resultat"] == pytest.approx(108)
+
+
+def test_route_euros_devise_devise_inconnue():
+    reponse = client.get("/euros_devise/100/XYZ")
+    assert reponse.status_code == 400
+
+
+def test_route_euros_devise_montant_negatif():
+    reponse = client.get("/euros_devise/-5/USD")
+    assert reponse.status_code == 400    
