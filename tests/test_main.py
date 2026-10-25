@@ -82,3 +82,14 @@ def test_route_compter_voyelles():
 def test_route_compter_voyelles_erreur():
     reponse = client.get("/compter_voyelles/%20")
     assert reponse.status_code == 400
+
+
+def test_route_inverser():
+    reponse = client.get("/inverser/abc")
+    assert reponse.status_code == 200
+    assert reponse.json()["inverse"] == "cba"
+
+
+def test_route_inverser_erreur():
+    reponse = client.get("/inverser/%20")
+    assert reponse.status_code == 400
