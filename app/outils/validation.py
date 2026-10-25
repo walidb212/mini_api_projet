@@ -6,3 +6,7 @@ def email_valide(email: str) -> bool:
         return False
     nom, _, extension = domaine.rpartition(".")
     return bool(nom) and len(extension) >= 2
+
+
+def code_postal(code: str) -> bool:
+    return len(code) == 5 and code.isascii() and code.isdigit()
