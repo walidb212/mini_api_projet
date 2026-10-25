@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE: ghcr.io/walidb212/mini_api_projet
+  IMAGE: ghcr.io/${{ github.repository }}
 
 jobs:
   image:
