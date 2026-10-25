@@ -60,3 +60,14 @@ def test_route_code_postal_incorrect():
     reponse = client.get("/code_postal/7500")
     assert reponse.status_code == 200
     assert reponse.json()["valide"] is False
+
+
+def test_route_est_palindrome():
+    reponse = client.get("/est_palindrome/kayak")
+    assert reponse.status_code == 200
+    assert reponse.json()["est_palindrome"] is True
+
+
+def test_route_est_palindrome_erreur():
+    reponse = client.get("/est_palindrome/%20")
+    assert reponse.status_code == 400
