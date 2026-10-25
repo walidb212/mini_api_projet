@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 
-from app.outils.convert import celsius_fahrenheit
+from app.outils.convert import celsius_fahrenheit, euros_devise
 from app.outils.math import est_premier, factorielle
 from app.outils.validation import email_valide
 
@@ -41,3 +41,15 @@ def route_est_premier(n: str):
         return {"n": n, "est_premier": est_premier(n)}
     except TypeError as e:
         raise HTTPException(400, detail=str(e))
+
+
+@app.get("/euros_devise/{montant}/{devise}")
+def route_euros_devise(montant: float, devise: str):
+    try:
+        return {
+            "montant": montant,
+            "devise": devise,
+            "resultat": euros_devise(montant, devise),
+        }
+    except ValueError as e:
+        raise HTTPException(400, detail=str(e))    
