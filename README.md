@@ -1,10 +1,9 @@
 # Mini API 🛠️
 
-Une API REST minimaliste qui expose des petits outils utiles : mathématiques, texte, conversion et validation.
-
-## 🟢 Badge CI
-
 [![CI](https://github.com/walidb212/mini_api_projet/actions/workflows/ci.yml/badge.svg)](https://github.com/walidb212/mini_api_projet/actions)
+
+
+Une API REST minimaliste qui expose des petits outils utiles : mathématiques, texte, conversion et validation.
 
 ## Installation
 
@@ -37,7 +36,7 @@ L'API écoute sur `http://localhost:8000`
 
 ```bash
 docker build -t mini-api .
-docker run -p 8000:8000 mini-api
+docker run -p 8000:8000 ghcr.io/walidb212/mini_api_projet:v1.0.0
 ```
 
 ## Utilisation
@@ -76,6 +75,18 @@ curl "http://localhost:8000/celsius_fahrenheit/100"
 # {"celsius": 100, "fahrenheit": 212}
 ```
 
+**Km → Miles**
+\`\`\`bash
+curl "http://localhost:8000/km_miles/160"
+# {"km": 160, "miles": 99.42}
+\`\`\`
+
+**Euros → Devise**
+\`\`\`bash
+curl "http://localhost:8000/euros_devise/100/USD"
+# {"euros": 100, "devise": "USD", "montant": 110.5}
+\`\`\`
+
 ### Validation
 
 **Email**
@@ -84,18 +95,44 @@ curl "http://localhost:8000/email_valide/test@example.com"
 # {"email": "test@example.com", "valide": true}
 ```
 
+**Code postal**
+\`\`\`bash
+curl "http://localhost:8000/code_postal/75001"
+# {"code_postal": "75001", "valide": true}
+\`\`\`
+
+### Texte
+
+**Majuscules**
+\`\`\`bash
+curl "http://localhost:8000/majuscules/hello"
+# {"texte": "hello", "resultat": "HELLO"}
+\`\`\`
+
+**Minuscules**
+\`\`\`bash
+curl "http://localhost:8000/minuscules/HELLO"
+# {"texte": "HELLO", "resultat": "hello"}
+\`\`\`
+
+**Inverse texte**
+\`\`\`bash
+curl "http://localhost:8000/inverse/hello"
+# {"texte": "hello", "resultat": "olleh"}
+\`\`\`
+
 ## Tests
 
 Lancer les tests avec couverture :
 
 ```bash
-pytest tests/ -v --cov=app --cov-report=html
+pytest --cov=app --cov-fail-under=80
 ```
 
 Vérifier la qualité du code :
 
 ```bash
-ruff check app/ tests/
+ruff check .
 ```
 
 ## Contribuer
@@ -121,7 +158,7 @@ ruff check app/ tests/
 
 ## Équipe
 
-- **Jérémie Brissière** - Développeur principal
-- **Walid Bouzidane** - Développeur principal
-- **Dylan RAMI** - Développeur principal
+- **Jérémie Brissière** - module math, README, modèle de PR
+- **Walid Bouzidane** - structure du projet, /sante, erreurs.py, module texte, CI et Docker/Deploy
+- **Dylan RAMI** - modules conversion et validation
 
