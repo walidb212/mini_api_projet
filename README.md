@@ -105,18 +105,6 @@ curl "http://localhost:8000/code_postal/75001"
 
 ### Texte
 
-**Majuscules**
-```bash
-curl "http://localhost:8000/majuscules/hello"
-# {"texte": "hello", "resultat": "HELLO"}
-```
-
-**Minuscules**
-```bash
-curl "http://localhost:8000/minuscules/HELLO"
-# {"texte": "HELLO", "resultat": "hello"}
-```
-
 **Inverse texte**
 ```bash
 curl "http://localhost:8000/inverser?texte=hello"
