@@ -12,3 +12,8 @@ def est_palindrome(texte: str) -> bool:
 def compter_voyelles(texte: str) -> int:
     verifier_texte(texte)
     return sum(1 for c in texte.lower() if c in "aeiouyàâéèêëîïôùûü")
+
+
+def inverser(texte: str) -> str:
+    verifier_texte(texte)
+    return texte[::-1]
