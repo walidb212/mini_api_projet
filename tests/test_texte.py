@@ -17,6 +17,8 @@ def test_est_palindrome_limite():
 def test_est_palindrome_erreur():
     with pytest.raises(ValueError):
         est_palindrome("")
+    with pytest.raises(ValueError):
+        est_palindrome("   ")
 
 
 def test_compter_voyelles_normal():
@@ -24,9 +26,13 @@ def test_compter_voyelles_normal():
 
 
 def test_compter_voyelles_limite():
-    assert compter_voyelles("") == 0
     assert compter_voyelles("bcd") == 0
     assert compter_voyelles("Élève à l'école") == 7
+
+
+def test_compter_voyelles_erreur():
+    with pytest.raises(ValueError):
+        compter_voyelles("")
 
 
 def test_inverser_normal():
@@ -34,5 +40,9 @@ def test_inverser_normal():
 
 
 def test_inverser_limite():
-    assert inverser("") == ""
     assert inverser("a") == "a"
+
+
+def test_inverser_erreur():
+    with pytest.raises(ValueError):
+        inverser("")
