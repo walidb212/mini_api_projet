@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 
 from app.erreurs import valeur_invalide
 from app.outils.convert import celsius_fahrenheit, euros_devise, km_miles
-from app.outils.math import est_premier, factorielle
+from app.outils.math import est_premier, factorielle, pgcd
 from app.outils.texte import compter_voyelles, est_palindrome, inverser
 from app.outils.validation import code_postal, email_valide
 
@@ -82,3 +82,13 @@ def route_compter_voyelles(texte: str):
 @app.get("/inverser")
 def route_inverser(texte: str):
     return {"texte": texte, "inverse": inverser(texte)}
+
+
+@app.get("/pgcd/{a}/{b}")
+def route_pgcd(a: str, b: str):
+    try:
+        a = int(a)
+        b = int(b)
+        return {"a": a, "b": b, "pgcd": pgcd(a, b)}
+    except (ValueError, TypeError) as e:
+        raise HTTPException(400, detail=str(e))
