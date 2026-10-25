@@ -44,8 +44,11 @@ def test_inverser_normal():
 
 def test_inverser_limite():
     assert inverser("a") == "a"
+    assert inverser("café") == "éfac"
 
 
 def test_inverser_erreur():
     with pytest.raises(ValueError):
         inverser("")
+    with pytest.raises(ValueError):
+        inverser("   ")
