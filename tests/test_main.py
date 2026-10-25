@@ -37,3 +37,15 @@ def test_route_est_palindrome():
     reponse = client.get("/est_palindrome/kayak")
     assert reponse.status_code == 200
     assert reponse.json()["est_palindrome"] is True
+
+
+def test_route_compter_voyelles():
+    reponse = client.get("/compter_voyelles/école")
+    assert reponse.status_code == 200
+    assert reponse.json()["voyelles"] == 3
+
+
+def test_route_inverser():
+    reponse = client.get("/inverser/abc")
+    assert reponse.status_code == 200
+    assert reponse.json()["inverse"] == "cba"
