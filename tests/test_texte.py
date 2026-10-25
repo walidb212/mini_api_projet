@@ -1,6 +1,6 @@
 import pytest
 
-from app.outils.texte import compter_voyelles, est_palindrome
+from app.outils.texte import compter_voyelles, est_palindrome, inverser
 
 
 def test_est_palindrome_normal():
@@ -35,3 +35,17 @@ def test_compter_voyelles_limite():
 def test_compter_voyelles_erreur():
     with pytest.raises(ValueError):
         compter_voyelles("")
+
+
+def test_inverser_normal():
+    assert inverser("abc") == "cba"
+    assert inverser("bonjour monde") == "ednom ruojnob"
+
+
+def test_inverser_limite():
+    assert inverser("a") == "a"
+
+
+def test_inverser_erreur():
+    with pytest.raises(ValueError):
+        inverser("")

@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException
 from app.erreurs import valeur_invalide
 from app.outils.convert import celsius_fahrenheit, euros_devise, km_miles
 from app.outils.math import est_premier, factorielle
-from app.outils.texte import compter_voyelles, est_palindrome
+from app.outils.texte import compter_voyelles, est_palindrome, inverser
 from app.outils.validation import code_postal, email_valide
 
 app = FastAPI(title="Mini API")
@@ -77,3 +77,8 @@ def route_est_palindrome(texte: str):
 @app.get("/compter_voyelles/{texte}")
 def route_compter_voyelles(texte: str):
     return {"texte": texte, "voyelles": compter_voyelles(texte)}
+
+
+@app.get("/inverser/{texte}")
+def route_inverser(texte: str):
+    return {"texte": texte, "inverse": inverser(texte)}
