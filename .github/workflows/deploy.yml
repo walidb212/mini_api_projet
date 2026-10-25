@@ -2,15 +2,19 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    tags: ["v*"]
   pull_request:
 
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE: ghcr.io/walidb212/mini_api_projet
+
 jobs:
-  docker:
+  image:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
       - uses: actions/checkout@v4
 
@@ -25,4 +29,4 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name == 'push' }}
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ${{ env.IMAGE }}:${{ github.ref_name }}
