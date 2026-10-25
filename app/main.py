@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 
 from app.outils.convert import celsius_fahrenheit
 from app.outils.math import est_premier, factorielle
-from app.outils.validation import email_valide
+from app.outils.validation import code_postal, email_valide
 
 app = FastAPI(title="Mini API")
 
@@ -41,3 +41,8 @@ def route_est_premier(n: str):
         return {"n": n, "est_premier": est_premier(n)}
     except TypeError as e:
         raise HTTPException(400, detail=str(e))
+
+
+@app.get("/code_postal/{code}")
+def route_code_postal(code: str):
+    return {"code": code, "valide": code_postal(code)}    
